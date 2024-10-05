@@ -37,7 +37,8 @@ pub fn main() !void {
         if (result == 1) {
             const buffer = try allocator.alloc(u8, max_size);
             std.mem.copyForwards(u8, buffer, &input_buffer);
-            try todo_list.append(buffer);
+            // try todo_list.append(buffer);
+            try todo_list.insert(0, buffer);
             for (todo_list.items, 0..) |item, i| {
                 std.log.info("{d} {s}", .{ i, item });
             }
