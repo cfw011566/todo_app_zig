@@ -36,7 +36,7 @@ pub fn main() !void {
         const result = rg.guiTextInputBox(rl.Rectangle{ .x = 20, .y = 20, .width = 300, .height = 200 }, "Todo Input", "Enter a Task", "Add", &input_buffer, max_size, &secret_view);
         if (result == 1) {
             const buffer = try allocator.alloc(u8, max_size);
-            std.mem.copyForwards(u8, buffer, &input_buffer);
+            @memcpy(buffer, &input_buffer);
             // try todo_list.append(buffer);
             try todo_list.insert(0, buffer);
             for (todo_list.items, 0..) |item, i| {
